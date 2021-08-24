@@ -541,24 +541,6 @@ public class Controller {
         }
     }
 
-    /*@FXML
-    void submitfall_quadcase(ActionEvent event) {
-        try{
-        fallresist_quadcasechart.getData().clear();
-        double height = Double.parseDouble(fallwithresistheight.getText());
-        double v2_lin = Double.parseDouble(vellincase.getText());
-        double v2_quad = Double.parseDouble(velquadcase.getText());
-        Cycles fallwithresistcycle = new Cycles();
-        fallwithresistcycle.CalcFallWithResistData(height, v2_lin, v2_quad);
-        XYChart.Series<Double, Double> quadcasedata = fallwithresistcycle.GetData2();
-        fallresist_quadcasechart.getData().add(quadcasedata);
-        //fallresist_quadcasechart.getData().add(ExperimentalData.ExpFallWithResist());
-
-        }
-        catch (Exception e){
-            ErrorDialog();
-        }
-    }*/
 
     @FXML
     void addrowFallWithResist(ActionEvent event) {
@@ -598,16 +580,7 @@ public class Controller {
 
     @FXML
     void clearfallwithangle(ActionEvent event) {
-        //fallwithanglechart.getData().removeAll(Rmax);
-        //fallwithanglechart.getData().removeAll(fallwithangledata);
         fallwithanglechart.getData().clear();
-        //Rmax.getData().clear();
-        //fallwithanglechart.getData().remove(Rmax);
-        //fallwithanglechart.getData().add(Rmax);
-       /* XYChart.Series<Double, Double> ExperimentalValue = new XYChart.Series<>();
-        ExperimentalValue.setName("Максимальное расстояние");
-        ExperimentalValue.getData().add(new XYChart.Data<>(22.95918367, 0.0));
-        fallwithanglechart.getData().add(ExperimentalValue);*/
     }
 
     @FXML
@@ -618,8 +591,6 @@ public class Controller {
             double v0 = Double.parseDouble(fallwithangle_v0.getText());
             if (alpha > 90 || alpha < 0 || v0 > 5000 || v0 < 0 || height > 10000 || height < 0) throw new Exception();
 
-            //XYChart.Series<Double, Double> ExperimentalValue = new XYChart.Series<>();
-            //fallwithanglechart.getData().add(Rmax);
             Rmax.getData().clear();
             fallwithanglechart.getData().removeAll(Rmax);
             Rmax.setName("Максимальное расстояние");
@@ -645,10 +616,6 @@ public class Controller {
         tabPane.getSelectionModel().select(fallwithangleTab);
         fallwithanglechart.getData().add(Rmax);
         fallwithanglechart.getData().add(fallwithangledata);
-        /*XYChart.Series<Double, Double> ExperimentalValue = new XYChart.Series<>();
-        ExperimentalValue.setName("Максимальное расстояние");
-        ExperimentalValue.getData().add(new XYChart.Data<>(22.95918367, 0.0));
-        fallwithanglechart.getData().add(ExperimentalValue);*/
     }
 
     //Падение под углом c учетом сопротивления воздуха
@@ -733,8 +700,6 @@ public class Controller {
      @FXML
     void keplercheckClear(ActionEvent event) {
         keplercheckChart.getData().clear();
-       //  keplercheck_vel2.setText("");
-       //  keplercheck_vel2_2.setText("");
          keplercheck_apow3_2.setText("");
          keplercheck_Tpow2_2.setText("");
          keplercheck_a1lb.setText("");
@@ -754,9 +719,6 @@ public class Controller {
         double vel1 = Double.parseDouble(keplercheck_vel1.getText());
         double vel2 = Double.parseDouble(keplercheck_vel2.getText());
         if (Math.abs(pos1) > 10 || Math.abs(pos2) > 10 || Math.abs(vel1) > 0.01 || Math.abs(vel2) > 0.01) throw new Exception();
-
-       // double vel2 = Math.sqrt( 4*Math.PI*Math.PI / (pos1*pos1 + pos2*pos2));
-       // keplercheck_vel2.setText(String.format("%.3f", vel2));
 
         Cycles keplercheckcycle = new Cycles();
         keplercheckcycle.CalcKeplerOrbitModelingData(pos1,pos2,vel1,vel2);
@@ -788,9 +750,6 @@ public class Controller {
             keplercheck_axis2.setUpperBound(maxval+0.5);
             keplercheck_axis2.setLowerBound(-maxval-0.5);
             keplercheck_axis2.setTickUnit(keplercheck_axis1.getTickUnit());
-
-            //double vel2_2 = Math.sqrt( 4*Math.PI*Math.PI / (pos1_2*pos1_2 + pos2_2*pos2_2));
-        //keplercheck_vel2_2.setText(String.format("%.3f", vel2_2));
 
         Cycles keplercheckcycle_2 = new Cycles();
         keplercheckcycle_2.CalcKeplerOrbitModelingData(pos1_2,pos2_2,vel1_2,vel2_2);
